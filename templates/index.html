@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PV Panel Scheduler | Upload & Optimize</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap CDN -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Custom Styles -->
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .main-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .form-card {
+      background: white;
+      border-radius: 12px;
+      padding: 50px 40px;
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.08);
+      border-left: 8px solid #007bff;
+    }
+
+    .form-header {
+      margin-bottom: 40px;
+    }
+
+    .form-header h2 {
+      font-weight: 700;
+      color: #212529;
+    }
+
+    .form-header p {
+      color: #6c757d;
+      font-size: 16px;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .form-control,
+    .form-select {
+      height: 48px;
+      font-size: 16px;
+      border-radius: 6px;
+    }
+
+    .btn-primary {
+      padding: 12px 30px;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 6px;
+      background-color: #007bff;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      margin-top: 80px;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #999;
+      border-top: 1px solid #dee2e6;
+    }
+
+    @media (max-width: 768px) {
+      .form-card {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-container">
+    <div class="form-card">
+      <div class="form-header text-center">
+        <h2>📄 Upload Conflict Data File</h2>
+        <p>Upload your PV panel conflict report (Excel) to generate optimized maintenance schedules.</p>
+      </div>
+
+      <form action="/schedule" method="post" enctype="multipart/form-data">
+        <div class="mb-4">
+          <label for="conflict_file" class="form-label">Excel File (.xlsx):</label>
+          <input type="file" class="form-control" name="conflict_file" required />
+          <small class="form-text text-muted">Must contain: <code>Panel_1</code>, <code>Panel_2</code>, <code>Conflict_Reasons</code></small>
+        </div>
+
+        <div class="mb-4">
+          <label for="goal" class="form-label">Scheduling Goal:</label>
+          <select name="goal" class="form-select" required>
+            <option value="" disabled selected>-- Select an objective --</option>
+            <option value="fastest">⚡ Fastest Scheduling</option>
+            <option value="balanced">⚖️ Balanced Time & Quality</option>
+            <option value="minimal_tech">👨‍🔧 Minimize Technicians</option>
+            <option value="all_compare">🧠 Compare All & Pick Best</option>
+          </select>
+        </div>
+
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-primary">🚀 Generate Schedule</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 PV Panel Scheduler • Powered by Graph Algorithms • Contact: support@pvoptimizer.com
+  </footer>
+</body>
+</html>
